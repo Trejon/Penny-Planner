@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  penny-planner-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+      args:
+        - NODE_ENV=development
+        # - DATABASE_URL=postgres://postgres:password@db_postgres:5432/debits-credits
+        # depends_on:
+        # - postgres
+        # env_file:
+        # - ./src/services/db/.env
+    volumes:
+      - ./:/usr/src/app/src
+      - /node_modules
+    container_name: penny-planner-api
+    networks:
+      - app-tier
+    expose:
+      - '3001'
+    ports:
+      - '3001:3001'
+    command: npm start
+
+networks:
+  app-tier:
+    driver: bridge
