@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Summer",
+    "description": "lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet",
+    "user": "Troy"
+  },
+  {
+    "name": "Road Trip",
+    "description": "lorem ipsum dolor sit amet - lorem ipsum dolor sit amet lorem ipsum dolor sit amet, lorem ipsum dolor sit amet",
+    "user": "Michael"
+  },
+  {
+    "name": "Wedding trip",
+    "description": "lorem ipsum dolor sit ametlorem ipsum dolor sit amet - lorem ipsum dolor sit amet",
+    "user": "Antoinette"
+  },
+  {
+    "name": "Tournement",
+    "description": "lorem ipsum dolor sit amet",
+    "user": "Troy"
+  }
+]

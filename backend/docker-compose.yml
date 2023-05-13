@@ -8,13 +8,14 @@ services:
       target: base
       args:
         - NODE_ENV=development
-        # - DATABASE_URL=postgres://postgres:password@db_postgres:5432/debits-credits
-        # depends_on:
-        # - postgres
-        # env_file:
-        # - ./src/services/db/.env
+        - DATABASE_URL=postgres://postgres:password@penny-planner-postgres:5432/penny-planner
+    depends_on:
+      - penny-planner-postgres
+    env_file:
+      - ./src/services/db/.env
     volumes:
-      - ./:/usr/src/app/src
+      - ./src:/usr/src/app/src
+      - ./app.js:/usr/src/app/app.js
       - /node_modules
     container_name: penny-planner-api
     networks:
@@ -24,6 +25,22 @@ services:
     ports:
       - '3001:3001'
     command: npm start
+
+  penny-planner-postgres:
+    build:
+      context: ./src/services/db
+      dockerfile: Dockerfile
+    container_name: penny-planner-postgres
+    user: postgres
+    env_file:
+      - ./src/services/db/.env
+    volumes:
+      - ./src/services/db/pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: always
+    networks:
+      - app-tier
 
 networks:
   app-tier:
