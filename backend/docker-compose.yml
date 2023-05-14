@@ -42,6 +42,24 @@ services:
     networks:
       - app-tier
 
+  redis-cache:
+    build:
+      context: ./src/services/cache
+      dockerfile: Dockerfile
+    container_name: redis-cache
+    env_file:
+      - ./src/services/cache/.env
+    environment:
+      - REDIS_URL=redis://cache:6379
+    ports:
+      - "6379:6379"
+    expose:
+      - 6379
+    networks:
+      - app-tier
+    volumes:
+      - ./src/services/cache/cache:/data
+
 networks:
   app-tier:
     driver: bridge
